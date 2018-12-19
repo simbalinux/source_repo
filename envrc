@@ -1,0 +1,4 @@
+# sample .envrc
+
+export GITHUB_USER='name'
+export GITHUB_SECRET='secret'

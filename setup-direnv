@@ -1,29 +1,13 @@
 #!/usr/bin/env bash
+set -x
+sudo yum -y install wget curl jq go tree vim 
+cd /tmp
+wget https://github.com/direnv/direnv/releases/download/v2.18.2/direnv.linux-amd64
+
+chmod +x direnv.linux-amd64
+ 
+sudo mv $PWD/direnv.linux-amd64 /usr/local/bin/direnv
+echo 'eval "$(direnv hook bash)"' >> $HOME/.bashrc
+source $HOME/.bashrc
 
 
-sudo yum -y install wget curl jq
-
-cd /tmp && wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
-
-
-sha256sum go1.10.3.linux-amd64.tar.gz
-
-sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
-
-echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
-
-wget https://github.com/pivotal-cf/om/releases/download/0.47.0/om-linux
-
-chmod +x om-linux
-
-sudo mv $PWD/om-linux /usr/local/bin
-
-source ~/.bashrc
-
-git clone https://github.com/direnv/direnv.git
-
-cd direnv && make && sudo make install
-echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-source ~/.bashrc
-
-direnv
